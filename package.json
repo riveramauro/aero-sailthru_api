@@ -5,6 +5,7 @@
   "author": "Mauricio Rivera <maurocol03@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "postinstall": "netlify-lambda install",
     "start": "parcel index.html --no-cache --open",
     "build": "parcel build index.html"
   },
