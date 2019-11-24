@@ -1,6 +1,6 @@
 // Change keys to Netlify env variables
-var apiKey = 'c64d63d7e5bf5919cc9a6f78b340ce41',
-    apiSecret = '1f179442b58e961fee8f7fa9156a3cc4',
+var apiKey = process.env.sailthruKey,
+    apiSecret = process.env.sailthruSecret,
     sailthru = require('sailthru-client').createSailthruClient(apiKey, apiSecret);
 
 exports.handler = (event, context, callback) => {

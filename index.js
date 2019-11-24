@@ -12,7 +12,7 @@ document.querySelector('input[type="submit"]').addEventListener('click', functio
     }
   };
 
-  $.post("http://localhost:8888/.netlify/functions/updateUser", JSON.stringify(formData) , function (res) {
+  $.post("https://aero-sailthru.netlify.com/.netlify/functions/updateUser", JSON.stringify(formData) , function (res) {
     var response = res;
     console.log(response);
   })
