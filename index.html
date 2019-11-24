@@ -16,7 +16,95 @@
 </head>
 <body>
   <h1 style="font-size: 1em; color: #8f8f8f;">For info visit<br>https://www.aerosoles.com</h1>
-  <input type="submit" value="Submit">
+  
+  <form name="signupForm" onsubmit="validateMyForm()">
+    <!-- {if show_var1 == true} -->
+    <div class="column" style="display: block; background: red; margin-bottom: 10px;">
+      <label>{var1_display_name}:</label>
+      <p class="note form_error" id="invalid" data-errormsg="vars[first_name]">Please enter a First Name</p>
+      <input name="vars[first_name]" type="text" class="input_em" data-validation="required" autofocus />
+    </div>
+    <!-- {/if}
+    {if show_var2 == true} -->
+    <div class="column" style="display: block; background: red; margin-bottom: 10px;">
+      <label>{var2_display_name}:</label>
+      <p class="note form_error" id="invalid" data-errormsg="vars[last_name]">Please enter a Last Name</p>
+      <input name="vars[last_name]" type="text" class="input_em" data-validation="required" />
+    </div>
+    <!-- {/if} -->
+  
+    <div style="display: block; background: red; margin-bottom: 10px;">
+    <label><input name="email" type="text" id="email" /></label>
+    <!-- {*spoof input for bots*} -->
+    <label>Your Email:</label> {*actual email input*}
+    <p class="note form_error" id="invalid" data-errormsg="email">
+      {error_message}
+    </p>
+    <input id="userEmail" name="email" type="text" class="input_em" data-validation="required email" />
+    </div>
+  
+    <!-- TODO -->
+    <div style="display: block; background: red; margin-bottom: 10px;">
+    <label>Nominee's Name:</label>
+    <p class="note form_error" id="invalid" data-errormsg="vars[recipient]">Please enter the nominee's name</p>
+    <input id="recipient" name="recipient" type="text" class="input_em" data-validation="required" />
+    </div>
+
+    <div style="display: block; background: red; margin-bottom: 10px;">
+    <label>How does she #showup for others? (1-2 sentences):</label>
+    <textarea id="showupTextarea" name="showupTextarea" class="input_em" maxlength="250"></textarea>
+    </div>
+  
+    <!-- {if show_checkboxes == true} -->
+    <div class="checkboxes">
+      <span>
+        <h3>{newsletters_title?: ''}</h3>
+      </span>
+      <p class="note" style="margin-top:0; margin-bottom: 1px;">{newsletters_text?: ''}</p>
+      <ul>
+        {foreach lists_array as i,c}
+        <li class="list"> <label class="checkbox_label">
+            <input type="checkbox" class="checkbox" name="{list_type}[{c.list_name}]" data-type="{var_data_type?: ''}"
+              value="{var_value?: 'true'}" />
+            <span class="newsletter_name">{c.display_name}</span>
+            {if show_description == true}
+            <span class="description">{c.description} </span>
+            {/if}
+          </label>
+        </li>
+        {/foreach}
+      </ul>
+    </div>
+    <!--END checkboxes-->
+    {/if}
+  
+    {if show_radios == true}
+    <span>
+      <h3>{variables_title?: ""}</h3>
+    </span>
+    <p class="note">{variables_text?: ""}</p>
+    <ul>
+      {foreach radio_button_values as c}
+      <li class="list">
+        <label><input type="radio" class="checkbox" name="vars[{radios_var_name}]"
+            value="{c.var_value}" />{c.display_value}</label>
+      </li>
+      {/foreach}
+    </ul>
+    {/if}
+  
+    {if show_datepicker == true || show_datepicker == "true"}
+    <span>
+      <h3>{datepicker_title?: ''}</h3>
+    </span>
+    <p class="note">{datepicker_text?: ''}</p>
+    <input type="date" class="date" name="vars[{date_var}]">
+    {/if}
+  
+    <input type="hidden" name="vars[source]" value="{source_var_value}" />
+    <input type="submit" name="submit" value="{buttonText}" class="btn" />
+  </form>
+  
 </body>
 <script src="./index.js"></script>
 </html>
