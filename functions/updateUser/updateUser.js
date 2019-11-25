@@ -30,6 +30,9 @@ exports.handler = (event, context, callback) => {
           console.log(`saveUserByKey Sucess: ${JSON.stringify(res)}`);
           return callback(null, {
             statusCode: 200,
+            headers: {
+              'Access-Control-Allow-Origin': '*'
+            },
             body: JSON.stringify(res)
           })
         });
@@ -50,11 +53,17 @@ exports.handler = (event, context, callback) => {
           if(err){
             return callback(null, {
               statusCode: 200,
+              headers: {
+                'Access-Control-Allow-Origin': '*'
+              },
               body: err
             })
           }
           return callback(null, {
             statusCode: 200,
+            headers: {
+              'Access-Control-Allow-Origin': '*'
+            },
             body: JSON.stringify(res)
           })
         })
